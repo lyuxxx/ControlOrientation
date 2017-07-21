@@ -15,10 +15,6 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         UIApplication.shared.keyWindow?.backgroundColor = .white
     }
-
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-    }
     
     override var shouldAutorotate: Bool {
         return true

@@ -37,32 +37,6 @@ class SecondViewController: UIViewController {
         full()
     }
     
-    func full() {
-        let orientation = UIApplication.shared.statusBarOrientation
-        if orientation.isLandscape {
-            UIDevice.current.setValue(UIInterfaceOrientation.portrait.rawValue, forKey: "orientation")
-        } else {
-            UIDevice.current.setValue(UIInterfaceOrientation.landscapeLeft.rawValue, forKey: "orientation")
-        }
-    }
-    
-    override var shouldAutorotate: Bool {
-        return true
-    }
-    
-    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
-        return [.all]
-    }
-    
-    override var prefersStatusBarHidden: Bool {
-        return statusBarHidden
-    }
-    
-    //动画类型，动画需要自己实现?
-    override var preferredStatusBarUpdateAnimation: UIStatusBarAnimation {
-        return .slide
-    }
-    
     @IBAction func dismiss(_ sender: UIButton) {
         let orientation = UIApplication.shared.statusBarOrientation
         print(orientation.rawValue)
@@ -73,7 +47,35 @@ class SecondViewController: UIViewController {
             //        dismiss(animated: true, completion: nil)
         }
     }
-
+    
+    func full() {
+        let orientation = UIApplication.shared.statusBarOrientation
+        if orientation.isLandscape {
+            UIDevice.current.setValue(UIInterfaceOrientation.portrait.rawValue, forKey: "orientation")
+        } else {
+            UIDevice.current.setValue(UIInterfaceOrientation.landscapeLeft.rawValue, forKey: "orientation")
+        }
+    }
+    
+    // MARK: - orientation
+    override var shouldAutorotate: Bool {
+        return true
+    }
+    
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return [.all]
+    }
+    
+    // MARK: - status bar
+    override var prefersStatusBarHidden: Bool {
+        return statusBarHidden
+    }
+    
+    //动画类型，动画需要自己实现?
+    override var preferredStatusBarUpdateAnimation: UIStatusBarAnimation {
+        return .slide
+    }
+    
     /*
     // MARK: - Navigation
 
