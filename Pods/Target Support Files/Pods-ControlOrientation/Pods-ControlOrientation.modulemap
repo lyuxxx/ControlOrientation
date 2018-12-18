@@ -1,0 +1,6 @@
+framework module Pods_ControlOrientation {
+  umbrella header "Pods-ControlOrientation-umbrella.h"
+
+  export *
+  module * { export * }
+}

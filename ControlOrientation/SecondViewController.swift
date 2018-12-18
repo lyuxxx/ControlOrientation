@@ -7,22 +7,92 @@
 //
 
 import UIKit
+import SnapKit
+
+let screenWidth = UIScreen.main.bounds.size.width
+let screenHeight = UIScreen.main.bounds.size.height
 
 class SecondViewController: UIViewController {
     
-    var statusBarHidden : Bool = false
+    var statusBarHidden: Bool = false
 
-    @IBOutlet weak var videoView: UIView!//宽高比为屏幕高宽比，autolayout自动处理，感觉代码写比较好？
+    lazy var videoView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .yellow
+        return view
+    }()
+
+    lazy var backBtn: UIButton = {
+        let btn = UIButton(type: .custom)
+        btn.setTitle("退出", for: .normal)
+        btn.setTitleColor(.black, for: .normal)
+        btn.addTarget(self, action: #selector(dismiss(_:)), for: .touchUpInside)
+        return btn
+    }()
+
+    lazy var fullBtn: UIButton = {
+        let btn = UIButton(type: .custom)
+        btn.setTitle("full", for: .normal)
+        btn.setTitleColor(.black, for: .normal)
+        btn.addTarget(self, action: #selector(fullScreen(_:)), for: .touchUpInside)
+        return btn
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         navigationController?.isNavigationBarHidden = true
 //        edgesForExtendedLayout = []
+        view.backgroundColor = .white
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(didTap(_:)))
         videoView.addGestureRecognizer(tap)
+
+        view.addSubview(videoView)
+        videoView.addSubview(backBtn)
+        videoView.addSubview(fullBtn)
+
+        videoView.snp.makeConstraints { (make) in
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+            make.left.right.equalTo(view)
+            make.height.equalTo(screenWidth * screenWidth / screenHeight)//使videoView宽高比为屏幕高宽比
+        }
+
+        backBtn.snp.makeConstraints { (make) in
+            make.top.equalTo(videoView.safeAreaLayoutGuide.snp.top)
+            make.left.equalTo(videoView.safeAreaLayoutGuide.snp.left)
+        }
+
+        fullBtn.snp.makeConstraints { (make) in
+            make.bottom.equalTo(videoView.safeAreaLayoutGuide.snp.bottom)
+            make.right.equalTo(videoView.safeAreaLayoutGuide.snp.right)
+        }
         
+    }
+
+    /// 横竖屏切换回调
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+
+        let isLandscape = size.width > size.height
+
+        /// 切换回竖屏时把所有元素显示,iPhoneX横屏不显示状态栏,会导致按钮隐藏和状态栏隐藏不同步
+        if !isLandscape {
+            statusBarHidden = false
+            setNeedsStatusBarAppearanceUpdate()
+            backBtn.isHidden = false
+            fullBtn.isHidden = false
+        }
+
+        if isLandscape {
+            videoView.snp.updateConstraints { (make) in
+                make.height.equalTo(screenWidth)
+            }
+        } else {
+            videoView.snp.updateConstraints { (make) in
+                make.height.equalTo(screenWidth * screenWidth / screenHeight)
+            }
+        }
     }
     
     func didTap(_ sender: UITapGestureRecognizer) {
@@ -30,14 +100,24 @@ class SecondViewController: UIViewController {
         statusBarHidden = !hidden
         UIView.animate(withDuration: 0.25) {
             self.setNeedsStatusBarAppearanceUpdate()
+            if !self.backBtn.isHidden {
+                self.backBtn.isHidden = true
+                self.fullBtn.isHidden = true
+            } else {
+                self.backBtn.isHidden = false
+                self.fullBtn.isHidden = false
+            }
         }
+
     }
-    
-    @IBAction func fullScreen(_ sender: UIButton) {
+
+    @objc
+    func fullScreen(_ sender: UIButton) {
         full()
     }
-    
-    @IBAction func dismiss(_ sender: UIButton) {
+
+    @objc
+    func dismiss(_ sender: UIButton) {
         let orientation = UIApplication.shared.statusBarOrientation
         print(orientation.rawValue)
         if orientation.isLandscape {
@@ -73,17 +153,7 @@ class SecondViewController: UIViewController {
     
     //动画类型，动画需要自己实现?
     override var preferredStatusBarUpdateAnimation: UIStatusBarAnimation {
-        return .slide
+        return .fade
     }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

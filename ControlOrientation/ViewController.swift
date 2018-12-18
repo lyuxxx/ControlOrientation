@@ -25,11 +25,10 @@ class ViewController: UIViewController {
     }
 
     @IBAction func openNewVC(_ sender: UIButton) {
-        if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "secondVC") as? SecondViewController {
-            vc.hidesBottomBarWhenPushed = true
-            navigationController?.pushViewController(vc, animated: true)
-//            present(vc, animated: true, completion: nil)
-        }
+        let vc = SecondViewController()
+        vc.hidesBottomBarWhenPushed = true
+        navigationController?.pushViewController(vc, animated: true)
+//        present(vc, animated: true, completion: nil)
     }
 
 }

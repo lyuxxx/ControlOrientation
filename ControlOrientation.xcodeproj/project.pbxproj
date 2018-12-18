@@ -15,6 +15,7 @@
 		3186F2271F1DE2CD0090CD59 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3186F2261F1DE2CD0090CD59 /* SecondViewController.swift */; };
 		3186F2291F1DEC9B0090CD59 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3186F2281F1DEC9B0090CD59 /* NavigationController.swift */; };
 		3186F22B1F1DECBA0090CD59 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3186F22A1F1DECBA0090CD59 /* TabBarController.swift */; };
+		9ABEA0822A1343D3DE5B7FA9 /* Pods_ControlOrientation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62073A4691F81B199DA9E0A9 /* Pods_ControlOrientation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,9 @@
 		3186F2261F1DE2CD0090CD59 /* SecondViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
 		3186F2281F1DEC9B0090CD59 /* NavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
 		3186F22A1F1DECBA0090CD59 /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		50B9D9864E9F5B35DBBEE8BB /* Pods-ControlOrientation.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ControlOrientation.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ControlOrientation/Pods-ControlOrientation.debug.xcconfig"; sourceTree = "<group>"; };
+		5527144082CC2ADD9CF40B71 /* Pods-ControlOrientation.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ControlOrientation.release.xcconfig"; path = "Pods/Target Support Files/Pods-ControlOrientation/Pods-ControlOrientation.release.xcconfig"; sourceTree = "<group>"; };
+		62073A4691F81B199DA9E0A9 /* Pods_ControlOrientation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ControlOrientation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,6 +39,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9ABEA0822A1343D3DE5B7FA9 /* Pods_ControlOrientation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -46,6 +51,8 @@
 			children = (
 				3186F2131F1DE29D0090CD59 /* ControlOrientation */,
 				3186F2121F1DE29D0090CD59 /* Products */,
+				3E4617A53BAF4AA69195C449 /* Pods */,
+				492F6E38A2D189BC4589F473 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -73,6 +80,23 @@
 			path = ControlOrientation;
 			sourceTree = "<group>";
 		};
+		3E4617A53BAF4AA69195C449 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				50B9D9864E9F5B35DBBEE8BB /* Pods-ControlOrientation.debug.xcconfig */,
+				5527144082CC2ADD9CF40B71 /* Pods-ControlOrientation.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		492F6E38A2D189BC4589F473 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				62073A4691F81B199DA9E0A9 /* Pods_ControlOrientation.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -80,9 +104,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3186F2231F1DE29D0090CD59 /* Build configuration list for PBXNativeTarget "ControlOrientation" */;
 			buildPhases = (
+				71F7E657243EB550835F89ED /* [CP] Check Pods Manifest.lock */,
 				3186F20D1F1DE29D0090CD59 /* Sources */,
 				3186F20E1F1DE29D0090CD59 /* Frameworks */,
 				3186F20F1F1DE29D0090CD59 /* Resources */,
+				9443AECBCB8ABCE7794A310A /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -140,6 +166,53 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		71F7E657243EB550835F89ED /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ControlOrientation-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9443AECBCB8ABCE7794A310A /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-ControlOrientation/Pods-ControlOrientation-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ControlOrientation/Pods-ControlOrientation-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		3186F20D1F1DE29D0090CD59 /* Sources */ = {
@@ -217,7 +290,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -262,7 +335,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -273,6 +346,7 @@
 		};
 		3186F2241F1DE29D0090CD59 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 50B9D9864E9F5B35DBBEE8BB /* Pods-ControlOrientation.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = B6Q5RKSB5N;
@@ -286,6 +360,7 @@
 		};
 		3186F2251F1DE29D0090CD59 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5527144082CC2ADD9CF40B71 /* Pods-ControlOrientation.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = B6Q5RKSB5N;
@@ -316,6 +391,7 @@
 				3186F2251F1DE29D0090CD59 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
